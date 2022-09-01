@@ -12,8 +12,6 @@
   cursor: pointer;
 }
 
-
-
 @media (min-width: 992px) {
   .offcanvas-backdrop {
     display: none;
@@ -21,5 +19,6 @@
 
   .main-body {
     margin-left: var(--offcanvass-width);
+    width: calc(100vw - var(--offcanvass-width));
   }
 }

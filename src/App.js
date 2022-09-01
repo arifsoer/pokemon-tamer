@@ -1,17 +1,9 @@
 import { useEffect, useState } from "react";
-import {
-  Button,
-  Container,
-  Dropdown,
-  Nav,
-  Navbar,
-  NavDropdown,
-  Offcanvas,
-} from "react-bootstrap";
+import { Container, Dropdown, Nav, Navbar, Offcanvas } from "react-bootstrap";
 
 import "./App.css";
 
-import useMediaQuery from "./hooks/useMediaQuery";
+import Explore from "./pages/explore/Explore";
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -19,15 +11,16 @@ function App() {
   const handleShow = () => setShowSidebar(true);
   const handleClose = () => setShowSidebar(false);
 
-  const isMobile = useMediaQuery(992);
+  const minDesktopScreen = 992;
 
   useEffect(() => {
-    if (isMobile) {
-      setShowSidebar(false);
-    } else {
-      setShowSidebar(true);
-    }
-  }, [isMobile]);
+    const resizeHandler = () => {
+      const isShowSidebar = window.innerWidth > minDesktopScreen;
+      setShowSidebar(isShowSidebar);
+    };
+    window.addEventListener("resize", resizeHandler);
+    return () => window.removeEventListener("resize", resizeHandler);
+  }, []);
 
   return (
     <>
@@ -73,9 +66,8 @@ function App() {
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>
-      <Container className="main-body px-2 pt-2" fluid>
-        <h1>Explore The Pokemon</h1>
-        <hr />
+      <Container className="main-body px-2 pt-2 me-2" fluid>
+        <Explore />
       </Container>
     </>
   );
