@@ -10,6 +10,8 @@
 
 .nav-item {
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 
 @media (min-width: 992px) {

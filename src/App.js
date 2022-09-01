@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { Container, Dropdown, Nav, Navbar, Offcanvas } from "react-bootstrap";
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 
 import "./App.css";
 
-import Explore from "./pages/explore/Explore";
+import Explore from "./pages/Explore/Explore";
+import PokemonDetail from "./pages/PokemonDetail/PokemonDetail"
+import MyPokemon from "./pages/MyPokemon/MyPokemon"
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -23,7 +26,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <BrowserRouter>
       <Navbar bg="dark" expand="lg" className="navbar-dark">
         <Container fluid>
           <Navbar.Toggle onClick={handleShow} />
@@ -45,19 +48,19 @@ function App() {
       >
         <Offcanvas.Body>
           <Nav className="flex-column">
-            <Nav.Item>
+            <Nav.Item as={NavLink} to="/">
               <div className="d-flex align-items-center p-2">
                 <i class="bi bi-house-door fs-5"></i>
                 <h4 className="ms-3 mb-0">Explore</h4>
               </div>
             </Nav.Item>
-            <Nav.Item>
+            <Nav.Item as={NavLink} to="/pokemon-detail">
               <div className="d-flex align-items-center p-2">
                 <i class="bi bi-ticket-detailed fs-5"></i>
                 <h4 className="ms-3 mb-0">Pokemon Detail</h4>
               </div>
             </Nav.Item>
-            <Nav.Item>
+            <Nav.Item as={NavLink} to="/my-pokemon">
               <div className="d-flex align-items-center p-2">
                 <i class="bi bi-person fs-5"></i>
                 <h4 className="ms-3 mb-0">My Pokemon</h4>
@@ -67,9 +70,13 @@ function App() {
         </Offcanvas.Body>
       </Offcanvas>
       <Container className="main-body px-2 pt-2 me-2" fluid>
-        <Explore />
+        <Routes>
+          <Route path="/" element={<Explore />} />
+          <Route path="/pokemon-detail" element={<PokemonDetail />} />
+          <Route path="/my-pokemon" element={<MyPokemon />} />
+        </Routes>
       </Container>
-    </>
+    </BrowserRouter>
   );
 }
 
