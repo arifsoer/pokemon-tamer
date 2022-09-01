@@ -9,10 +9,13 @@ const PokemonItem = ({ className }) => {
         src={bulbasaur.sprites.other["official-artwork"].front_default}
       />
       <Card.Body className="pb-0">
-        <Card.Title >{bulbasaur.name.toUpperCase()}</Card.Title>
+        <Card.Title>{bulbasaur.name.toUpperCase()}</Card.Title>
       </Card.Body>
-      <Card.Body className="pt-0 d-flex justify-content-end">
-        <Button variant="primary" size="sm" className="">
+      <Card.Body className="pt-0 d-flex justify-content-between">
+        <Button variant="success" size="sm">
+          Details
+        </Button>
+        <Button variant="primary" size="sm">
           Catch
         </Button>
       </Card.Body>
