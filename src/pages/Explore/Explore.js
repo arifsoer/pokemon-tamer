@@ -7,12 +7,20 @@ import { useGetApi } from '../../hooks/useApi'
 import PokemonItem from "./PokemonItem";
 
 const Explore = () => {
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemon, setPokemon] = useState({results: []});
   const [getPokemonData, error] = useGetApi({baseUrl: '/pokemon'})
 
+  const initialize = async () => {
+    try {
+      const results = await getPokemonData()
+      setPokemon(results)
+    } catch (error) {
+      alert(error)
+    }
+  }
+
   useEffect(() => {
-    const thePokemonsData = getPokemonData()
-    setPokemon(thePokemonsData)
+    initialize()
   }, [])
 
   return (
@@ -20,9 +28,9 @@ const Explore = () => {
       <h1>Explore The Pokemon</h1>
       <hr />
       <Row>
-        {pokemon.results.map((i) => {
+        {pokemon.results.map((poke) => {
           return (
-            <Col sm={6} lg={2} key={i} className="d-flex">
+            <Col sm={6} lg={2} key={poke.name} className="d-flex">
               <PokemonItem className="mb-4" />
             </Col>
           );

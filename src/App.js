@@ -33,7 +33,7 @@ function App() {
           <Navbar.Brand>Pokemon Tamer</Navbar.Brand>
           <Dropdown>
             <Dropdown.Toggle variant="dark">
-              <i class="bi bi-person fs-6"></i>
+              <i className="bi bi-person fs-6"></i>
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item>My Pokemon</Dropdown.Item>
@@ -50,19 +50,19 @@ function App() {
           <Nav className="flex-column">
             <Nav.Item as={NavLink} to="/">
               <div className="d-flex align-items-center p-2">
-                <i class="bi bi-house-door fs-5"></i>
+                <i className="bi bi-house-door fs-5"></i>
                 <h4 className="ms-3 mb-0">Explore</h4>
               </div>
             </Nav.Item>
             <Nav.Item as={NavLink} to="/pokemon-detail">
               <div className="d-flex align-items-center p-2">
-                <i class="bi bi-ticket-detailed fs-5"></i>
+                <i className="bi bi-ticket-detailed fs-5"></i>
                 <h4 className="ms-3 mb-0">Pokemon Detail</h4>
               </div>
             </Nav.Item>
             <Nav.Item as={NavLink} to="/my-pokemon">
               <div className="d-flex align-items-center p-2">
-                <i class="bi bi-person fs-5"></i>
+                <i className="bi bi-person fs-5"></i>
                 <h4 className="ms-3 mb-0">My Pokemon</h4>
               </div>
             </Nav.Item>
