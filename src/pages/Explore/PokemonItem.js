@@ -40,7 +40,7 @@ const PokemonItem = ({ className, pokemon }) => {
           <Button variant="success" size="sm">
             Details
           </Button>
-          <Button variant="primary" size="sm" onClick={() => addNewPokemon(pokemonData)}>
+          <Button variant="primary" size="sm" onClick={() => addNewPokemon(pokemon)}>
             Catch
           </Button>
         </Card.Body>
