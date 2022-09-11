@@ -40,7 +40,7 @@ describe('Use API Hooks Testing', () => {
         const { useGetApi } = require('./useApi.js')
 
         // run the function
-        const [doRequest] = useGetApi(configTest)
+        const {doRequest} = useGetApi(configTest)
         const result = await doRequest()
 
         // assert the result
@@ -72,7 +72,7 @@ describe('Use API Hooks Testing', () => {
         const { useGetApi } = require('./useApi.js')
 
         // run the function
-        const [doRequest, error] = useGetApi(configHook)
+        const {doRequest, error} = useGetApi(configHook)
         await doRequest()
 
         //assertiation

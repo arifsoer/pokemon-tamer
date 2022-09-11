@@ -2,8 +2,12 @@ import { useState } from 'react'
 
 import api from '../plugins/api'
 
-export const useGetApi = ({ baseUrl, queryParamsCollection, onSuccess }) => {
+export const useGetApi = ({ baseUrl, onSuccess }) => {
     const [error, setError] = useState(null)
+    let queryParamsCollection = null
+    const setQueryParamsCollection = (newQueryParams) => {
+        queryParamsCollection = newQueryParams
+    }
     const doRequest = async () => {
         let queries = ''
         if (queryParamsCollection) {
@@ -19,5 +23,5 @@ export const useGetApi = ({ baseUrl, queryParamsCollection, onSuccess }) => {
         }
     }
 
-    return [doRequest, error]
+    return {doRequest, setQueryParamsCollection, error}
 }
