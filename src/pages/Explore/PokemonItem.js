@@ -11,7 +11,7 @@ const PokemonItem = ({ className, pokemon }) => {
 
   const {doRequest: getData, error} = useGetApi({ baseUrl: `/pokemon/${pokemon.name}` })
 
-  const { addNewPokemon } = useContext(MyPokemonContext)
+  const { addNewPokemon, myPokemons } = useContext(MyPokemonContext)
 
   const initializeData = async () => {
     try {
@@ -25,6 +25,8 @@ const PokemonItem = ({ className, pokemon }) => {
   useEffect(() => {
     initializeData()
   }, [])
+
+  const isAlreadyCatch = myPokemons.map(p => p.name).includes(pokemon.name)
 
   return (
     <Card className={className}>
@@ -40,9 +42,9 @@ const PokemonItem = ({ className, pokemon }) => {
           <Button variant="success" size="sm">
             Details
           </Button>
-          <Button variant="primary" size="sm" onClick={() => addNewPokemon(pokemon)}>
+          {!isAlreadyCatch && <Button variant="primary" size="sm" onClick={() => addNewPokemon(pokemon)}>
             Catch
-          </Button>
+          </Button>}
         </Card.Body>
       </>}
     </Card>
