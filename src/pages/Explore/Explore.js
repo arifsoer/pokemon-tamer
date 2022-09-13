@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
-import { Row, Col, Pagination } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 import { useGetApi } from '../../hooks/useApi'
 
+import Pagination from '../../components/Pagination';
 import PokemonItem from "./PokemonItem";
 
 const Explore = () => {
@@ -11,9 +12,8 @@ const Explore = () => {
   const { doRequest: getPokemonData, setQueryParamsCollection: setQueryParams, error } = useGetApi({ baseUrl: '/pokemon' })
   // pagination part
   const [currentPage, setCurrentPage] = useState(1)
-  const pageItems = []
   const maxItemPerPage = 50
-  const maxPages = Math.floor(pokemon.count / maxItemPerPage)
+
   const changePageHandler = async (pageNumber) => {
     setCurrentPage(pageNumber)
     setQueryParams([
@@ -34,24 +34,23 @@ const Explore = () => {
     }
   }
 
-  for (let index = 1; index < maxPages; index++) {
-    pageItems.push(
-      <Pagination.Item key={index} active={index === currentPage} onClick={() => changePageHandler(index)}>
-        {index}
-      </Pagination.Item>
-    )
-  }
-
   useEffect(() => {
     initialize()
   }, [])
+
+  const pagination = <Pagination
+    currentPage={currentPage}
+    onPageChange={changePageHandler}
+    pageSize={maxItemPerPage}
+    totalCount={pokemon.count}
+  />
 
   return (
     <>
       <h1>Explore The Pokemon</h1>
       <hr />
       <div className='d-flex justify-content-center'>
-        <Pagination>{pageItems}</Pagination>
+        {pagination}
       </div>
       <Row>
         {pokemon.results.map((poke) => {
@@ -64,7 +63,7 @@ const Explore = () => {
         {error && <h1>we got error</h1>}
       </Row>
       <div className='d-flex justify-content-center'>
-        <Pagination>{pageItems}</Pagination>
+        {pagination}
       </div>
       <div style={{ height: '40px' }} />
     </>
