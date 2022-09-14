@@ -2,6 +2,9 @@
   "name": "tamer-guide",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://redbios-pokemon.github.io",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -43,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^4.0.0",
     "jest": "^27.5.1"
   }
 }
