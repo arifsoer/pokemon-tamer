@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.34d9f9a4.css",
-    "main.js": "/static/js/main.dae26407.js",
-    "static/js/787.770c3ce9.chunk.js": "/static/js/787.770c3ce9.chunk.js",
-    "static/media/bootstrap-icons.woff?": "/static/media/bootstrap-icons.e559bf06bc84fd9525e6.woff",
-    "static/media/bootstrap-icons.woff2?": "/static/media/bootstrap-icons.ea98e12d2d58747f9fc5.woff2",
-    "index.html": "/index.html",
-    "main.34d9f9a4.css.map": "/static/css/main.34d9f9a4.css.map",
-    "main.dae26407.js.map": "/static/js/main.dae26407.js.map",
-    "787.770c3ce9.chunk.js.map": "/static/js/787.770c3ce9.chunk.js.map"
+    "main.css": "/pokemon-tamer/static/css/main.4458cbd5.css",
+    "main.js": "/pokemon-tamer/static/js/main.437da1bd.js",
+    "static/js/787.770c3ce9.chunk.js": "/pokemon-tamer/static/js/787.770c3ce9.chunk.js",
+    "static/media/bootstrap-icons.woff?": "/pokemon-tamer/static/media/bootstrap-icons.e559bf06bc84fd9525e6.woff",
+    "static/media/bootstrap-icons.woff2?": "/pokemon-tamer/static/media/bootstrap-icons.ea98e12d2d58747f9fc5.woff2",
+    "index.html": "/pokemon-tamer/index.html",
+    "main.4458cbd5.css.map": "/pokemon-tamer/static/css/main.4458cbd5.css.map",
+    "main.437da1bd.js.map": "/pokemon-tamer/static/js/main.437da1bd.js.map",
+    "787.770c3ce9.chunk.js.map": "/pokemon-tamer/static/js/787.770c3ce9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.34d9f9a4.css",
-    "static/js/main.dae26407.js"
+    "static/css/main.4458cbd5.css",
+    "static/js/main.437da1bd.js"
   ]
 }
