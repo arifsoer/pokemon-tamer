@@ -1,17 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, Button, Card } from "react-bootstrap";
+import { useSelector, useDispatch } from 'react-redux'
 
 import { useGetApi } from "../../hooks/useApi";
-
-import { MyPokemonContext } from "../../MyPokemonContext"
+import { addNewPokemon, removePokemon } from "../../redux/pokemon"
 
 const PokemonItem = ({ className, pokemon }) => {
   const [pokemonData, setPokemonData] = useState(null)
 
-  const {doRequest: getData, error} = useGetApi({ baseUrl: `/pokemon/${pokemon.name}` })
+  const { doRequest: getData, error } = useGetApi({ baseUrl: `/pokemon/${pokemon.name}` })
 
-  const { addNewPokemon, myPokemons } = useContext(MyPokemonContext)
+  const myPokemons = useSelector(state => state.pokemon.value)
+  const disppatch = useDispatch()
 
   const initializeData = async () => {
     try {
@@ -28,6 +29,14 @@ const PokemonItem = ({ className, pokemon }) => {
 
   const isAlreadyCatch = myPokemons.map(p => p.name).includes(pokemon.name)
 
+  const buttonCatchRelease = isAlreadyCatch ? 
+    <Button variant="danger" size="sm" onClick={() => disppatch(removePokemon(pokemon))}>
+      Release
+    </Button> : 
+    <Button variant="primary" size="sm" onClick={() => disppatch(addNewPokemon(pokemon))}>
+      Catch
+    </Button>
+
   return (
     <Card className={className}>
       {error && <><Alert variant="danger">{error}</Alert></>}
@@ -42,9 +51,7 @@ const PokemonItem = ({ className, pokemon }) => {
           <Button variant="success" size="sm">
             Details
           </Button>
-          {!isAlreadyCatch && <Button variant="primary" size="sm" onClick={() => addNewPokemon(pokemon)}>
-            Catch
-          </Button>}
+          {buttonCatchRelease}
         </Card.Body>
       </>}
     </Card>

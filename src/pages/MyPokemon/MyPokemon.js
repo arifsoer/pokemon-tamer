@@ -1,11 +1,10 @@
-import { useContext } from 'react';
 import { Row, Col } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 
-import { MyPokemonContext } from '../../MyPokemonContext';
 import PokemonItem from '../Explore/PokemonItem';
 
 const MyPokemon = () => {
-  const { myPokemons } = useContext(MyPokemonContext)
+  const myPokemons = useSelector(state => state.pokemon.value)
   return (
     <>
       <h1>My Pokemon List</h1>
