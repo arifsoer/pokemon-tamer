@@ -7,15 +7,18 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import store from "./redux/store"
+import { mystore, persistedStore } from "./redux/store"
 import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+  <Provider store={mystore}>
+    <PersistGate loading={null} persistor={persistedStore}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </PersistGate>
   </Provider>
 );
 

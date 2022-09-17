@@ -30,7 +30,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/pokemon-tamer">
       <Navigationbar handleShow={handleShow} />
       <SideMenu showSidebar={showSidebar} handleClose={handleClose} />
       <Container className="main-body overflow-auto px-2 pt-2 me-2" fluid>

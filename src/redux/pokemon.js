@@ -8,17 +8,16 @@ export const pokemonDataHandle = createSlice({
   reducers: {
     addNewPokemon: (state, action) => {
       const newPokemon = action.payload
-      const find = state.value.findIndex(poke => poke.name === newPokemon)
+      const find = state.value.findIndex(poke => poke.name === newPokemon.name)
       if (find <= -1) {
         state.value.push(newPokemon)
       }
     },
     removePokemon: (state, action) => {
       const myPokemon = action.payload
-      const ind = state.value.indexOf(myPokemon)
-      console.log(myPokemon)
+      const ind = state.value.findIndex(poke => poke.name === myPokemon.name)
       if (ind > -1) {
-        state.value = state.value.splice(ind, 1)
+        state.value.splice(ind, 1)
       }
     }
   }

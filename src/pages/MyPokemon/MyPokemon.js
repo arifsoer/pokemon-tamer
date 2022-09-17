@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux'
 import PokemonItem from '../Explore/PokemonItem';
 
 const MyPokemon = () => {
-  const myPokemons = useSelector(state => state.pokemon.value)
+  const myPokemons = useSelector(state => {
+    return state.pokemon.value
+  })
   return (
     <>
       <h1>My Pokemon List</h1>
