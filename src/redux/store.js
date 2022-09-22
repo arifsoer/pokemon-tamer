@@ -1,7 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import pokemonReducer from './pokemon'
 import { persistReducer, persistStore } from 'redux-persist'
 import thunk from 'redux-thunk'
+
+import pokemonReducer from './pokemon'
+import databaseReducer from './database'
 
 import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2'
@@ -14,7 +16,8 @@ const persistedConfig = {
 }
 
 const rootReducer = combineReducers({
-  pokemon: pokemonReducer
+  myPokemon: pokemonReducer,
+  database: databaseReducer
 })
 
 const persistedReducer = persistReducer(persistedConfig, rootReducer)

@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import { Alert, Button, Card } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
 
-import { useGetApi } from "../../hooks/useApi";
-import { addNewPokemon, removePokemon } from "../../redux/pokemon"
+import { useGetApi } from "../../../hooks/useApi";
+import { addNewPokemon, removePokemon } from "../../../redux/pokemon"
 
 const PokemonItem = ({ className, pokemon }) => {
   const [pokemonData, setPokemonData] = useState(null)
 
   const { doRequest: getData, error } = useGetApi({ baseUrl: `/pokemon/${pokemon.name}` })
 
-  const myPokemons = useSelector(state => state.pokemon.value)
+  const myPokemons = useSelector(state => state.myPokemon.value)
   const disppatch = useDispatch()
 
   const initializeData = async () => {

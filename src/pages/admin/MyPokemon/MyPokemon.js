@@ -5,7 +5,7 @@ import PokemonItem from '../Explore/PokemonItem';
 
 const MyPokemon = () => {
   const myPokemons = useSelector(state => {
-    return state.pokemon.value
+    return state.myPokemon.value
   })
   return (
     <>
