@@ -1,25 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
-import { Alert, Button, Card } from "react-bootstrap";
+import { useEffect } from "react";
+import { Button, Card } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
 
-import { useGetApi } from "../../../hooks/useApi";
 import { addNewPokemon, removePokemon } from "../../../redux/pokemon"
+import { fetchSinglePokemon } from "../../../redux/database"
 
 const PokemonItem = ({ className, pokemon }) => {
-  const [pokemonData, setPokemonData] = useState(null)
-
-  const { doRequest: getData, error } = useGetApi({ baseUrl: `/pokemon/${pokemon.name}` })
 
   const myPokemons = useSelector(state => state.myPokemon.value)
   const disppatch = useDispatch()
 
   const initializeData = async () => {
-    try {
-      const result = await getData()
-      setPokemonData(result)
-    } catch (error) {
-      alert(error)
+    const dataLength = Object.keys(pokemon).length
+    if (dataLength <= 2) {
+      disppatch(fetchSinglePokemon(pokemon.name))
     }
   }
 
@@ -29,23 +24,22 @@ const PokemonItem = ({ className, pokemon }) => {
 
   const isAlreadyCatch = myPokemons.map(p => p.name).includes(pokemon.name)
 
-  const buttonCatchRelease = isAlreadyCatch ? 
+  const buttonCatchRelease = isAlreadyCatch ?
     <Button variant="danger" size="sm" onClick={() => disppatch(removePokemon(pokemon))}>
       Release
-    </Button> : 
+    </Button> :
     <Button variant="primary" size="sm" onClick={() => disppatch(addNewPokemon(pokemon))}>
       Catch
     </Button>
 
   return (
     <Card className={className}>
-      {error && <><Alert variant="danger">{error}</Alert></>}
-      {pokemonData && <>
+      {pokemon.sprites && <>
         <Card.Img
-          src={pokemonData.sprites.other["official-artwork"].front_default}
+          src={pokemon.sprites.other["official-artwork"].front_default}
         />
         <Card.Body className="pb-0">
-          <Card.Title>{pokemonData.name.toUpperCase()}</Card.Title>
+          <Card.Title>{pokemon.name.toUpperCase()}</Card.Title>
         </Card.Body>
         <Card.Body className="pt-0 d-flex justify-content-between">
           <Button variant="success" size="sm">

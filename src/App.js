@@ -18,8 +18,10 @@ function App() {
   const loaded = allPokemon.length > 0 && allType.length > 0
 
   useEffect(() => {
-    if(!loaded) {
+    if(allPokemon.length === 0) {
       dispatch(fetchAllPokemon())
+    }
+    if(allType.length === 0) {
       dispatch(fetchAllType())
     }
   }, [])

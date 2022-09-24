@@ -12,6 +12,14 @@ export const fetchAllType = createAsyncThunk('databse/fetchAllType', async () =>
   return response.data
 })
 
+export const fetchSinglePokemon = createAsyncThunk(
+  'database/fetchSinglePokemin',
+  async (pokemonName) => {
+    const response = await api.get(`/pokemon/${pokemonName}`)
+    return response.data
+  }
+)
+
 export const sliceDatabase = createSlice({
   name: 'database',
   initialState: {
@@ -32,6 +40,11 @@ export const sliceDatabase = createSlice({
     })
     builder.addCase(fetchAllType.fulfilled, (state, action) => {
       state.allType = action.payload.results
+    })
+    builder.addCase(fetchSinglePokemon.fulfilled, (state, action) => {
+      const result = action.payload
+      const index = state.allPokemon.findIndex(x => result.name === x.name)
+      state.allPokemon[index].sprites =result.sprites
     })
   }
 })
