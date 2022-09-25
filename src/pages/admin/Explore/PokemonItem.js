@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Button, Card } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -9,12 +9,11 @@ import { fetchSinglePokemon } from "../../../redux/database"
 const PokemonItem = ({ className, pokemon }) => {
 
   const myPokemons = useSelector(state => state.myPokemon.value)
-  const disppatch = useDispatch()
+  const dispatch = useDispatch()
 
   const initializeData = async () => {
-    const dataLength = Object.keys(pokemon).length
-    if (dataLength <= 2) {
-      disppatch(fetchSinglePokemon(pokemon.name))
+    if (Object.keys(pokemon).length <= 2) {
+      dispatch(fetchSinglePokemon(pokemon.name))
     }
   }
 
@@ -25,10 +24,10 @@ const PokemonItem = ({ className, pokemon }) => {
   const isAlreadyCatch = myPokemons.map(p => p.name).includes(pokemon.name)
 
   const buttonCatchRelease = isAlreadyCatch ?
-    <Button variant="danger" size="sm" onClick={() => disppatch(removePokemon(pokemon))}>
+    <Button variant="danger" size="sm" onClick={() => dispatch(removePokemon(pokemon))}>
       Release
     </Button> :
-    <Button variant="primary" size="sm" onClick={() => disppatch(addNewPokemon(pokemon))}>
+    <Button variant="primary" size="sm" onClick={() => dispatch(addNewPokemon(pokemon))}>
       Catch
     </Button>
 
@@ -52,4 +51,4 @@ const PokemonItem = ({ className, pokemon }) => {
   );
 };
 
-export default PokemonItem;
+export default React.memo(PokemonItem);

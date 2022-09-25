@@ -15,15 +15,16 @@ const persistedConfig = {
   stateReconciler: autoMergeLevel2
 }
 
-const rootReducer = combineReducers({
-  myPokemon: pokemonReducer,
+const persistedMyPokemonReducer = persistReducer(persistedConfig, pokemonReducer)
+
+const combinedReducer = combineReducers({
+  myPokemon: persistedMyPokemonReducer,
   database: databaseReducer
 })
 
-const persistedReducer = persistReducer(persistedConfig, rootReducer)
 
 const mystore = configureStore({
-  reducer: persistedReducer,
+  reducer: combinedReducer,
   middleware: [thunk]
 })
 
