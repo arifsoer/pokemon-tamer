@@ -1,6 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useMemo } from "react"
 
+interface UsePaginationProps {
+  totalCount: number;
+  pageSize: number;
+  siblingCount?: number;
+  currentPage: number;
+}
+
 export const DOTS = '...'
 
 export const usePagination = ({
@@ -8,8 +15,8 @@ export const usePagination = ({
   pageSize,
   siblingCount = 1,
   currentPage
-}) => {
-  const range = (start, end) => {
+}: UsePaginationProps) => {
+  const range = (start: number, end: number) => {
     const length = end - start + 1
 
     return Array.from({length}, (_, idx) => idx + start)

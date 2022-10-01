@@ -1,5 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { mystore, persistedStore } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -7,19 +10,15 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import { mystore, persistedStore } from "./redux/store"
-import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
+const container = document.getElementById("root") as HTMLElement;
+const root = ReactDOM.createRoot(container);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={mystore}>
-    <PersistGate loading={null} persistor={persistedStore}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </PersistGate>
-  </Provider>
+  <React.StrictMode>
+    <Provider store={mystore}>
+      <App />
+    </Provider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

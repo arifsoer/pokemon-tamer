@@ -1,6 +1,11 @@
+import React from 'react'
 import { Container, Dropdown, Navbar } from 'react-bootstrap'
 
-const NavigationBar = ({ handleShow }) => {
+interface Props {
+  handleShow: () => void
+}
+
+const NavigationBar = ({ handleShow }: Props) => {
   return (
     <Navbar bg="dark" expand="lg" className="navbar-dark">
       <Container fluid>
@@ -16,7 +21,7 @@ const NavigationBar = ({ handleShow }) => {
         </Dropdown>
       </Container>
     </Navbar>
-  )
-}
+  );
+};
 
 export default NavigationBar

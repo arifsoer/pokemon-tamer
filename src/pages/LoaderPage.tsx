@@ -1,6 +1,6 @@
-import { Container } from "react-bootstrap"
+import { Container } from "react-bootstrap";
 
-import Spinner from '../components/spinner/spinner'
+import Spinner from "../components/spinner/spinner";
 
 const LoaderPage = () => {
   return (
@@ -13,6 +13,6 @@ const LoaderPage = () => {
       </div>
     </Container>
   );
-}
+};
 
-export default LoaderPage
+export default LoaderPage;

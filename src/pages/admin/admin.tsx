@@ -1,3 +1,4 @@
+import React from "react";
 import { Container } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
 import {useState, useEffect} from 'react'
@@ -11,7 +12,7 @@ import MyPokemon from './MyPokemon/MyPokemon'
 import PageNotFound from './PageNotFound'
 
 const AdminPage = () => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState<boolean>(true);
 
   const handleShow = () => setShowSidebar(true);
   const handleClose = () => setShowSidebar(false);

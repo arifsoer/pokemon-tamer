@@ -1,11 +1,19 @@
+import React from 'react'
 import { usePagination, DOTS } from '../hooks/usePagination'
+
+interface Props {
+  currentPage: number;
+  onPageChange: (page: number) => void;
+  pageSize: number;
+  totalCount: number;
+}
 
 const Pagination = ({
   currentPage,
   onPageChange,
   pageSize,
   totalCount
-}) => {
+}: Props) => {
   const BsPagination = require('react-bootstrap/Pagination').default
   const paginationItems = usePagination({
     currentPage,
@@ -26,14 +34,14 @@ const Pagination = ({
   items.push(
     <BsPagination.Prev key={'prev'} onClick={backButton} disabled={currentPage === 1} />
   )
-  paginationItems.forEach((item, ind) => {
+  paginationItems!.forEach((item:string | number, ind: number) => {
     if (item === DOTS) {
       items.push(
         <BsPagination.Ellipsis key={ind+'elip'} disabled />
       )
     } else {
       items.push(
-        <BsPagination.Item key={item} active={currentPage === item} onClick={() => onPageChange(item)}>{item}</BsPagination.Item>
+        <BsPagination.Item key={item} active={currentPage === item} onClick={() => onPageChange(item as number)}>{item}</BsPagination.Item>
       )
     }
   })

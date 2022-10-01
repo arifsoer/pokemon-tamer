@@ -1,12 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
+import type {PayloadAction} from '@reduxjs/toolkit'
+
+export interface PokemonState {
+  value: PokemonInterface[]
+}
+
+const initialState: PokemonState = {
+  value: []
+}
 
 export const pokemonDataHandle = createSlice({
   name: 'pokemon',
-  initialState: {
-    value: []
-  },
+  initialState,
   reducers: {
-    addNewPokemon: (state, action) => {
+    addNewPokemon: (state, action: PayloadAction<PokemonInterface>) => {
       const newPokemon = action.payload
       const find = state.value.findIndex(poke => poke.name === newPokemon.name)
       if (find <= -1) {

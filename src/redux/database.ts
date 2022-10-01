@@ -1,6 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../plugins/api";
 
+interface DatabaseState {
+  allPokemon: PokemonInterface[];
+  allType: TypeInterface[];
+}
+
+const initialState: DatabaseState = {
+  allPokemon: [],
+  allType: []
+}
+
 // the thunk
 export const fetchAllPokemon = createAsyncThunk('database/fetchAllPokemon', async () => {
   const response = await api.get('/pokemon?limit=1154')
@@ -14,7 +24,7 @@ export const fetchAllType = createAsyncThunk('databse/fetchAllType', async () =>
 
 export const fetchSinglePokemon = createAsyncThunk(
   'database/fetchSinglePokemin',
-  async (pokemonName) => {
+  async (pokemonName: string) => {
     const response = await api.get(`/pokemon/${pokemonName}`)
     return response.data
   }
@@ -22,15 +32,12 @@ export const fetchSinglePokemon = createAsyncThunk(
 
 export const sliceDatabase = createSlice({
   name: 'database',
-  initialState: {
-    allPokemon: [],
-    allType: []
-  },
+  initialState,
   reducers: {
     setAllPokemon: (state, action) => {
       state.allPokemon = action.payload
     },
-    setAllType: async (state, action) => {
+    setAllType: (state, action) => {
       state.allType = action.payload
     }
   },

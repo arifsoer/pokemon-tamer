@@ -1,17 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useEffect, useState, SetStateAction } from "react";
 import { Button, Modal } from "react-bootstrap";
 import store from 'store'
 
 const STORE_KEY = 'myPokemon'
 
-export const MyPokemonContext = React.createContext()
+interface myPokemonContextInterface {
+  myPokemons: PokemonInterface[];
+  addNewPokemon: (newPokemon: PokemonInterface) => void;
+  removePokemon: (newPokemon: PokemonInterface) => void;
+  showCatchModal?: Dispatch<SetStateAction<boolean>>;
+}
 
-export const MyPokemonComponent = ({ children }) => {
-  const [myPokemons, setMyPokemon] = useState([])
+export const MyPokemonContext = React.createContext<myPokemonContextInterface>({
+  myPokemons: [],
+  addNewPokemon: () => {},
+  removePokemon: () => {}
+})
+
+export const MyPokemonComponent: React.FC<{children: React.ReactNode}> = ({ children }) => {
+  const [myPokemons, setMyPokemon] = useState<PokemonInterface[]>([])
   const [catchModal, showCatchModal] = useState(false)
   const [modalMessage, setModalMessage] = useState('')
 
-  const addNewPokemon = (newPokemon) => {
+  const addNewPokemon = (newPokemon: PokemonInterface) => {
     const find = myPokemons.findIndex(poke => poke.name === newPokemon.name)
     if (find <= -1) {
       myPokemons.push(newPokemon)
@@ -25,7 +36,7 @@ export const MyPokemonComponent = ({ children }) => {
     }
   }
 
-  const removePokemon = (removePokemon) => {
+  const removePokemon = (removePokemon: PokemonInterface) => {
     const ind = myPokemons.indexOf(removePokemon)
     if (ind > -1) {
       myPokemons.splice(ind, 1)

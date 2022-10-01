@@ -1,4 +1,4 @@
-import './spinner.css'
+import "./spinner.css";
 
 const spinner = () => {
   return (
@@ -9,6 +9,6 @@ const spinner = () => {
       <div></div>
     </div>
   );
-}
+};
 
-export default spinner
+export default spinner;
